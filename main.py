@@ -31,21 +31,16 @@ maskDetailed=wages["View"]=="detailed"
 maskTotal=wages["View"]=="total"
 maskArea=wages["AREA_TYPE"]==2
 
-##Scatter Plot
-#Employment and Salary
-st.subheader("Employment Count & Salary")
-
+##Scatter Plots
 SPMajor=wages[maskUS & maskCrossIndustry & maskMajor]
 SPDetailed=wages[maskUS & maskCrossIndustry & maskDetailed]
-
-#SPStateEmployMajor=wages[maskStates & maskArea & maskMajor]
-#SPStateEmployDetailed=wages[maskStates & maskDetailed & maskArea]
-#st.dataframe(SPStateEmployDetailed)
 
 ##Map
 wagesMap=wages[maskTotal & maskArea]
 
 #Scatter Plots
+st.subheader("Employment Count & Salary")
+
 figUSG = px.scatter(SPMajor, x="Median Annual Salary ($)", y="Employment Count", hover_name="Occupation")
 figUSG.update_layout(title='General Occupations')
 
@@ -85,5 +80,5 @@ figSalaryMap = go.Figure(data=go.Choropleth(
 figSalaryMap.update_layout(geo_scope='usa')
 st.plotly_chart(figSalaryMap)
 
-st.write("Source: [U.S. Bureau of Labor Statistics](https://www.bls.gov/oes/current/oes_nat.htm)")
+st.write("**Source:** [U.S. Bureau of Labor Statistics](https://www.bls.gov/oes/current/oes_nat.htm)")
 st.write("For further exploration, visit [My Next Move](https://www.mynextmove.org)")
